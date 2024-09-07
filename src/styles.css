@@ -22,13 +22,16 @@ input, button, textarea, select {
   font: inherit;
 }
 
+.container{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
 
 .taskbtn{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
    border-radius: 50%;
@@ -38,8 +41,9 @@ input, button, textarea, select {
   color: white;
 }
 
-.taskbtn:hover{
+.taskbtn:hover, .navbtn:hover{
    background-color: orange;
+  color: orangered;
 }
 
 li{
@@ -48,7 +52,30 @@ li{
 
 .list-div{
  display: flex;
- flex-direction: row;
-border: black solid 1px;
+
 }
 
+.project-div{
+  margin-top: 2rem;
+}
+
+
+.title{
+padding-left: 3rem;
+}
+
+.navbtn{
+  margin-left: 2rem;
+  border: none;
+  padding-right: 1fr;
+  background-color: white;
+ display: block;
+  width: 90%;
+  text-align: start;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.addtask{
+  margin-left: 0.5rem;
+}
