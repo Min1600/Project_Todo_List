@@ -6,22 +6,44 @@
     <title>Project: TODO List</title>
 <script defer src="main.js"></script></head>
 <body>
-    <div class="container">
+    <div id="container">
         <div class="sidebar">
             <h3>User</h3>
         <ul>
-           <div class="list-div"> <button type="button" class="taskbtn">+</button><li class="addtask">Add task</li></div> 
-        <li><button class="navbtn"> Inbox</button></li> 
-           <li><button class="navbtn">Today</button></li>
-            <li><button class="navbtn">Upcoming</button></li>
-            <li>My Projects</li>
+           <div class="list-div"><button type="button" class="taskbtn" id="addTask">+</button>
+            <li class="addtask">Add task</li></div> 
+        <li><button id="inbox" class="navbtn"> Inbox</button></li> 
+           <li><button id="today" class="navbtn">Today</button></li>
+            <li><button class="navbtn" id="upcoming">Upcoming</button></li>
+            <li id="project">My Projects</li>
         </ul>
         </div>
         <div class="mainpage">
           <div class="title">
           <h1>MAIN TITLE </h1>
-          <p>some paragrpah about some stuff</p>
+          <p>some paragrpah about some stuff</p></div>
+          <div class="mainBody">
+            
           </div>
+          <dialog>
+            <form>
+              <legend>Add a Task</legend>
+              <div class="inputContainer">
+                <div class="inputTitle"> <p class="titleChild"> Title: </p> <p class="descriptionChild">Description: </p> <p class="dateChild">Due Date: </p></div>
+              <div class="input">
+                <label for="title"><input type="text" id="title" name="title" required></label>
+              <label for="description"><textarea name="description" id="description"></textarea></label> 
+                <label for="date"><input type="date" id="date" name="date"></label>
+                </div>
+                 
+              </div>
+              <div class="divBtn">
+              <button type="submit" id="add">Add</button>
+               <button type="submit" id="close">Close</button>
+                </div>
+            </form>
+          </dialog>
+          
         </div>
     </div>
 </body>
