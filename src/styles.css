@@ -22,9 +22,9 @@ input, button, textarea, select {
   font: inherit;
 }
 
-.container{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+#container{
+display: grid;
+grid-template-columns: 1fr 3fr
 }
 
 .taskbtn{
@@ -41,7 +41,7 @@ input, button, textarea, select {
   color: white;
 }
 
-.taskbtn:hover, .navbtn:hover{
+.taskbtn:hover, .navbtn:hover, #add:hover, #close:hover{
    background-color: orange;
   color: orangered;
 }
@@ -73,9 +73,65 @@ padding-left: 3rem;
   width: 90%;
   text-align: start;
   padding: 0.25rem;
-  border-radius: 0.25rem;
+  border-radius: 10px;
 }
 
 .addtask{
   margin-left: 0.5rem;
+}
+
+textarea{
+  resize: none;
+}
+
+legend{
+  margin: 1rem;
+}
+
+dialog{
+  width: 30vw;
+position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.inputContainer{
+  display: flex;
+  margin: 1rem;
+}
+
+.inputTitle{
+  display: grid;
+}
+
+.dateChild{
+  align-self: end;
+}
+
+.descriptionChild{
+  align-self: start;
+}
+
+input, textarea{
+  width: 12rem;
+}
+
+#date, #title{
+  height: 2rem;
+}
+
+#description{
+  height: 4rem;
+}
+
+.divBtn{
+  display: flex;
+  justify-content: end;
+}
+
+#add, #close{
+  width: 5rem;
+  background-color: orangered;
+  border-radius: 10px;
 }
