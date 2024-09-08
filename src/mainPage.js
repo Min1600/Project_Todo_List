@@ -3,6 +3,26 @@ import {inbox} from "./inbox"
 import {today} from "./today"
 import {myProject} from "./myProject";
 
+const inboxPage = () =>{
+
+    const mainPage = document.querySelector(".mainPage")
+    const inboxDiv = document.createElement("div")
+    const mainTitle = document.createElement("h1")
+    const para = document.createElement("p")
+    
+    inboxDiv.classList("title")
+    para.classList("paraTitle")
+    
+    mainTitle.textContent = "Inbox"
+    para.textContent = "This is where all your tasks will be stored. Feel free to add a new task, set a priority, and pick a due date. If you make a project, you can assign tasks to them, too!"
+    
+    mainPage.appendChild(inboxDiv)
+    inboxDiv.appendChild(mainTitle)
+    inboxDiv.appendChild(para)
+    }
+    
+    inboxPage()
+
 const addTaskBtn = document.getElementById("addTask")
 const addBtn = document.getElementById("add")
 const closeBtn = document.getElementById("close")
@@ -16,7 +36,11 @@ const description = document.getElementById("description")
 const date = document.getElementById("date")
 const mainBody = document.querySelector(".mainBody")
 
-function Task (){
+
+
+
+
+const Task = function (){
 this.title = title.value
 this.description = description.value
 this.date = date.value
@@ -34,7 +58,7 @@ const storage = (function (){
 
 
 
-const taskDOM = (title, text) =>{
+function taskDOM (title, text){
   const taskDiv = document.createElement("div")
   const task = document.createElement("p");
   const description = document.createElement("p");
@@ -48,7 +72,7 @@ const taskDOM = (title, text) =>{
   
 }
 
-const reset = () =>{
+function reset(){
   title.value = ""
   description.value = ""
 }
@@ -60,4 +84,3 @@ addBtn.addEventListener("click", (event) =>
         taskDOM(storage.myTasks[storage.myTasks.length-1].title, storage.myTasks[storage.myTasks.length-1].description);
         reset();
     })
-

@@ -6,6 +6,7 @@
 * {
   margin: 0px;
   padding: 0px;
+  font-size: 12px;
 }
 
 body {
@@ -24,7 +25,7 @@ input, button, textarea, select {
 
 #container{
 display: grid;
-grid-template-columns: 1fr 3fr
+grid-template-columns: 1fr 3fr;
 }
 
 .taskbtn{
@@ -89,7 +90,7 @@ legend{
 }
 
 dialog{
-  width: 30vw;
+  width: 25vw;
 position: absolute;
    top: 50%;
    left: 50%;
@@ -114,24 +115,28 @@ position: absolute;
 }
 
 input, textarea{
-  width: 12rem;
+  width: 15vw;
 }
 
 #date, #title{
-  height: 2rem;
+  height: 1.5rem;
+  font-size:1rem;
 }
 
 #description{
-  height: 4rem;
+  height: 3rem;
 }
 
 .divBtn{
   display: flex;
   justify-content: end;
+  margin: 1rem;
+  gap: 10px;
 }
 
 #add, #close{
-  width: 5rem;
   background-color: orangered;
-  border-radius: 10px;
+  border-radius: 5px;
+  width: 4rem;
+  border: none;
 }
