@@ -6,7 +6,13 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-size: 12px;
+  font-size: 16px;
+  font-family:Arial, Helvetica, sans-serif
+}
+
+:root{
+  --sidebar-bg-color: bisque;
+  --button-hover-color: 	silver;
 }
 
 body {
@@ -25,7 +31,40 @@ input, button, textarea, select {
 
 #container{
 display: grid;
-grid-template-columns: 1fr 3fr;
+grid-template-columns: minmax(375px, 1fr) 4fr
+}
+
+h3{
+  margin: 1rem;
+}
+
+h1{
+  font-size: 3rem;
+}
+
+h2{
+  font-size: 1.5rem;
+}
+
+
+.mainBody{
+  display: grid;
+  justify-content: center;
+}
+
+.taskBody{
+  border-bottom: lightgray solid 1px;
+  min-width: 400px;
+  max-width: 1000px;
+  width: 1000px;
+
+}
+
+.sidebar{
+  padding: 1rem;
+  height: 100vh;
+  grid-row: 1 / 5;
+  background-color: var(--sidebar-bg-color);
 }
 
 .taskbtn{
@@ -42,18 +81,13 @@ grid-template-columns: 1fr 3fr;
   color: white;
 }
 
-.taskbtn:hover, .navbtn:hover, #add:hover, #close:hover{
-   background-color: orange;
-  color: orangered;
+button:hover{
+   background-color: var(--button-hover-color)
+  
 }
 
 li{
   list-style-type: none;
-}
-
-.list-div{
- display: flex;
-
 }
 
 .project-div{
@@ -61,24 +95,70 @@ li{
 }
 
 
-.title{
+
+.title, .taskBody{
+margin-top: 1rem;
+margin-bottom: 1rem;
 padding-left: 3rem;
 }
 
-.navbtn{
-  margin-left: 2rem;
+.navbtn, .projectTab{
   border: none;
   padding-right: 1fr;
-  background-color: white;
+  background-color: var(--sidebar-bg-color);
  display: block;
-  width: 90%;
   text-align: start;
   padding: 0.25rem;
+  width: 100%;
   border-radius: 10px;
+  grid-column: 1 / 10
 }
 
-.addtask{
-  margin-left: 0.5rem;
+#addTask{
+  color: orangered;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.plus{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: clamp(9px, 24px, 24px);
+  height: 1.5rem;
+   border-radius: 50%;
+   border: none;
+   background-color: orangered;
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
+  color: black;
+}
+
+.projectDiv{
+  display: grid;
+  grid-template-columns: repeat(9, clamp(24px, 10%, 100%));
+}
+
+#projectbtn{
+  grid-column: 1 / 2
+}
+
+#project{
+  grid-column: 2 / 10;
+  font-weight: bold;
+}
+
+
+#upcoming{
+  margin-bottom: 2rem;
+}
+
+button:disabled{
+background-color: burlywood;
+color: orangered;
+opacity: 80%;
 }
 
 textarea{
@@ -134,9 +214,10 @@ input, textarea{
   gap: 10px;
 }
 
-#add, #close{
+.dialogbtn{
   background-color: orangered;
   border-radius: 5px;
   width: 4rem;
   border: none;
 }
+

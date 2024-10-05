@@ -6,45 +6,65 @@
     <title>Project: TODO List</title>
 </head>
 <body>
-    <div id="container">
-        <div class="sidebar">
-            <h3>User</h3>
+  <div id="container">
+      <div class="sidebar">
+            <h3>Min</h3>
         <ul>
-           <div class="list-div"><button type="button" class="taskbtn" id="addTask">+</button>
-            <li class="addtask">Add task</li></div> 
-        <li><button id="inbox" class="navbtn"> Inbox</button></li> 
-           <li><button id="today" class="navbtn">Today</button></li>
+           
+            <li class="addtask"><button id="addTask" class="navbtn">Add task +</button></li>
+            <li><button id="inbox" class="navbtn"> Inbox</button></li> 
+            <li><button id="today" class="navbtn">Today</button></li>
             <li><button class="navbtn" id="upcoming">Upcoming</button></li>
-            <li id="project">My Projects</li>
+            <li><div class="projectDiv"><button class="plus" id="projectbtn">+</button><button class="navbtn" id="project">My Projects</button></div></li>
+
         </ul>
-        </div>
-
-        <div class="mainPage">
-
-          <div class="mainBody">
-            
-          </div>
-          <dialog>
-            <form>
-              <legend>Add a Task</legend>
-              <div class="inputContainer">
-                <div class="inputTitle"> <p class="titleChild"> Title: </p> <p class="descriptionChild">Description: </p> <p class="dateChild">Due Date: </p>
-                </div>
-              <div class="input">
-                <label for="title"><input type="text" id="title" name="title" required></label>
-              <label for="description"><textarea name="description" id="description"></textarea></label> 
-                <label for="date"><input type="date" id="date" name="date"></label>
-                </div>
-                 
-              </div>
-              <div class="divBtn">
-              <button type="submit" id="add">Add</button>
-               <button type="submit" id="close">Close</button>
-                </div>
-            </form>
-          </dialog>
-          
-        </div>
+      </div>
+        
+      <div class="mainPage" id="content"></div>
+      
+      <div class="mainBody"></div>
+    
     </div>
+
+    <dialog class="taskDialog">
+      <form>
+        <legend>Add a Task</legend>
+        <div class="inputContainer">
+
+          <div class="inputTitle"> <p class="titleChild"> Title: </p> <p class="descriptionChild">Description: </p> <p class="dateChild">Due Date: </p>
+          </div>
+
+          <div class="input">
+          <label for="title"><input type="text" id="title" name="title" required></label>
+          <label for="description"><textarea name="description" id="description"></textarea></label> 
+          <label for="date"><input type="date" id="date" name="date"></label>
+          </div>
+           
+        </div>
+
+        <div class="divBtn">
+            <button type="submit" id="add" class="dialogbtn">Add</button>
+            <button type="submit" id="close" class="dialogbtn">Close</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="projectDialog">
+      <form>
+        <legend>Add Project</legend>
+          <div class="inputContainer">
+              <div class="inputTitle"> <p class="titleChild"> Title: </p> <p class="descriptionChild">Description: </p></div>
+              <div class="input">
+                <label for="project-title"><input type="text" id="project-title" name="project-title" required></label>
+                <label for="project-description"><textarea name="project-description" id="project-description"></textarea></label>
+                </div>
+          </div>
+          <div class="divBtn">
+            <button type="submit" id="addProject" class="dialogbtn">Add</button>
+            <button type="submit" id="closeProject" class="dialogbtn">Close</button>
+        </div>
+      </form>
+    </dialog>
+
 </body>
 </html>
