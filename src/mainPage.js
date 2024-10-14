@@ -85,15 +85,38 @@ function inbox() {
 inbox();
 
 window.onload = () => {
-  if (JSON.parse(localStorage.getItem("projectList"))) {
-    let data = JSON.parse(localStorage.getItem("projectList"));
+  let JSONdata = JSON.parse(localStorage.getItem("Storage"))
 
-    data.forEach((item) => {
-      projectSidebar(item);
-    });
+  if(!JSONdata){
+let template = [
+  
+{
+  title: "Tasks",
+  tasks: []
+},
+
+{
+  title: "Today",
+  tasks: []
+},
+
+{
+  title: "Upcoming",
+  tasks: []
+}
+
+]
+  localStorage.setItem("Storage", JSON.stringify(template));
   }
 
-  storage.checkBoxJSON();
+  let storageJSON = JSON.parse(localStorage.getItem("Storage")) || []
+  let [,,, ...projects] = storageJSON
+
+
+    projects.forEach((item) => {
+      projectSidebar(item);
+    });
+  
 };
 
 function defaultDialogClose(event, dialog) {
@@ -121,8 +144,9 @@ addBtn.addEventListener("click", (event) => {
     displayData(JSON.parse(localStorage.getItem("projectTask")));
   } else {
     storage.inboxStorageJSON();
+    let storageJSON = JSON.parse(localStorage.getItem("Storage"))
+    displayData(storageJSON[0].tasks);
     defaultDialogClose(event, taskDialog);
-    displayData(JSON.parse(localStorage.getItem("task")));
   }
 });
 
@@ -137,8 +161,8 @@ addProjectBtn.addEventListener("click", (event) => {
   storage.projectStorageJSON();
   defaultDialogClose(event, projectDialog);
   projectSidebar(
-    JSON.parse(localStorage.getItem("projectList"))[
-      JSON.parse(localStorage.getItem("projectList")).length - 1
+    JSON.parse(localStorage.getItem("Storage"))[
+      JSON.parse(localStorage.getItem("Storage")).length - 1
     ],
   );
 });

@@ -42,7 +42,7 @@ function projectSidebar(obj) {
 
   newProject.textContent = obj.title;
   newProject.className = "projectTab";
-  newProject.id = obj.title;
+  newProject.id = obj.id;
   projects.appendChild(newProject);
 }
 
@@ -78,10 +78,10 @@ function deleteData(id) {
 
 //Add tasks to inbox DOM on page load from localStorage
 function inboxData() {
-  if (JSON.parse(localStorage.getItem("task"))) {
-    let data = JSON.parse(localStorage.getItem("task"));
+  if (JSON.parse(localStorage.getItem("Storage"))) {
+    let data = JSON.parse(localStorage.getItem("Storage")) || [];
 
-    displayData(data);
+    displayData(data[0].tasks);
   }
 }
 

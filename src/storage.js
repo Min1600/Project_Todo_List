@@ -48,32 +48,20 @@ const storage = (function () {
 
   //uses addTask and push functions to store tasks in localStorage
   function inboxStorageJSON() {
-    let myTasks = [];
+    let storage = JSON.parse(localStorage.getItem("Storage"))
+    let myTasks = storage[0].tasks
+     addTask(myTasks)
 
-    if (JSON.parse(localStorage.getItem("task"))) {
-      let tasks = JSON.parse(localStorage.getItem("task"));
-      addTask(myTasks);
-      push(tasks, myTasks);
-      localStorage.setItem("task", JSON.stringify(myTasks));
-    } else {
-      addTask(myTasks);
-      localStorage.setItem("task", JSON.stringify(myTasks));
-    }
+    localStorage.setItem("Storage", JSON.stringify(storage));
+    
   }
 
   //uses addProject and push functions to store projects in localStorage
   function projectStorageJSON() {
-    let projectList = [];
+    let storage = JSON.parse(localStorage.getItem("Storage"))
+    addProject(storage)
 
-    if (JSON.parse(localStorage.getItem("projectList"))) {
-      let project = JSON.parse(localStorage.getItem("projectList"));
-      addProject(projectList);
-      push(project, projectList);
-      localStorage.setItem("projectList", JSON.stringify(projectList));
-    } else {
-      addProject(projectList);
-      localStorage.setItem("projectList", JSON.stringify(projectList));
-    }
+    localStorage.setItem("Storage", JSON.stringify(storage));
   }
 
   function projectTaskJSON() {
