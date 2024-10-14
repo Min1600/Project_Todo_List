@@ -1,20 +1,20 @@
-import {todayData} from "./pageDOM"
+import { todayData } from "./pageDOM";
 
-const today = () =>{
-    const mainPage = document.getElementById("content")
-    const todayDiv = document.createElement("div")
-    const mainTitle = document.createElement("h1")
-    const todayBtn = document.getElementById("today")
+const today = () => {
+  const mainPage = document.getElementById("content");
+  const todayDiv = document.createElement("div");
+  const mainTitle = document.createElement("h1");
+  const todayBtn = document.getElementById("today");
 
-    todayBtn.disabled = true;
-    todayDiv.className = "title"
+  todayBtn.disabled = true;
+  todayDiv.className = "title";
 
-    mainTitle.textContent = "Today"
+  mainTitle.textContent = "Today";
 
-    mainPage.appendChild(todayDiv)
-    todayDiv.appendChild(mainTitle)
+  mainPage.appendChild(todayDiv);
+  todayDiv.appendChild(mainTitle);
 
-    todayData()
-}
+  todayData();
+};
 
-export{today}
+export { today };
