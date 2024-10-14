@@ -116,7 +116,8 @@ projectTaskData()
   }
 
   function projectTaskData(){
-    if(JSON.parse(localStorage.getItem("projectTask"))){
+    let test = JSON.parse(localStorage.getItem("projectTask")) || []
+    if(test){
   
       let data = JSON.parse(localStorage.getItem("projectTask"))
   

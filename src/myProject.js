@@ -24,11 +24,11 @@ const sideBarProjects = (id) => {
   const projectDiv = document.createElement("div");
   const title = document.createElement("h1");
   const description = document.createElement("p");
-  let storageJSON = JSON.parse(localStorage.getItem("Storage")) || [];
-  let [,,, ...projects] = storageJSON
+  let projects = JSON.parse(localStorage.getItem("ProjectList")) || [];
+
 
   projects.forEach((item) => {
-    if (item.id === id) {
+    if (item.title === id) {
       title.textContent = item.title;
       description.textContent = item.description;
     }
@@ -48,7 +48,7 @@ function projectSidebar(obj) {
 
   newProject.textContent = obj.title;
   newProject.className = "projectTab";
-  newProject.id = obj.id;
+  newProject.id = obj.title;
   projects.appendChild(newProject);
 }
 
