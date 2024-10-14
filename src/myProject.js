@@ -28,7 +28,7 @@ const sideBarProjects = (id) => {
   let [,,, ...projects] = storageJSON
 
   projects.forEach((item) => {
-    if (item.id === id) {
+    if (item.title === id) {
       title.textContent = item.title;
       description.textContent = item.description;
     }
@@ -39,7 +39,7 @@ const sideBarProjects = (id) => {
   projectDiv.appendChild(title);
   projectDiv.appendChild(description);
 
-  projectTaskData();
+  //projectTaskData();
 };
 
 function projectSidebar(obj) {
@@ -48,7 +48,7 @@ function projectSidebar(obj) {
 
   newProject.textContent = obj.title;
   newProject.className = "projectTab";
-  newProject.id = obj.id;
+  newProject.id = obj.title;
   projects.appendChild(newProject);
 }
 
