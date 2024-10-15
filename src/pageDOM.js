@@ -46,6 +46,31 @@ function projectSidebar(obj) {
   projects.appendChild(newProject);
 }
 
+
+const sideBarProjects = (id) => {
+  const mainPage = document.getElementById("content");
+  const projectDiv = document.createElement("div");
+  const title = document.createElement("h1");
+  const description = document.createElement("p");
+  let storageJSON = JSON.parse(localStorage.getItem("Storage")) || [];
+  let [,,, ...projects] = storageJSON
+
+  projects.map((item) => {
+   if(String(id) === String(item.id)){
+      title.textContent = item.title;
+      description.textContent = item.description;
+      
+      projectDiv.className = "title";
+      mainPage.appendChild(projectDiv);
+      projectDiv.appendChild(title);
+      projectDiv.appendChild(description);
+   }
+   
+  });
+
+  //projectTaskData();
+};
+
 function deleteData(id) {
   let inboxTask = JSON.parse(localStorage.getItem("task")) || [];
   let projectTask = JSON.parse(localStorage.getItem("projectTask")) || [];
@@ -96,10 +121,11 @@ function todayData() {
 }
 
 function projectData() {
-  if (JSON.parse(localStorage.getItem("projectList"))) {
-    let data = JSON.parse(localStorage.getItem("projectList"));
+  if (JSON.parse(localStorage.getItem("Storage"))) {
+    let data = JSON.parse(localStorage.getItem("Storage"));
+    let [,,, ...projects] = data
 
-    displayData(data);
+    displayData(projects);
   }
 }
 
@@ -132,4 +158,5 @@ export {
   projectSidebar,
   projectData,
   projectTaskData,
+  sideBarProjects
 };

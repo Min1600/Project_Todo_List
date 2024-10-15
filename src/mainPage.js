@@ -1,8 +1,8 @@
 import "./styles.css";
 import { today } from "./today";
-import { myProject, sideBarProjects } from "./myProject";
+import { myProject } from "./myProject";
 import { storage } from "./storage";
-import { displayData, inboxData, projectSidebar } from "./pageDOM";
+import { displayData, inboxData, projectSidebar, sideBarProjects } from "./pageDOM";
 
 const addTaskBtn = document.getElementById("addTask");
 const addBtn = document.getElementById("add");
