@@ -2,7 +2,7 @@ import "./styles.css";
 import { today } from "./today";
 import { myProject } from "./myProject";
 import { storage } from "./storage";
-import { displayData, inboxData, projectSidebar, sideBarProjects } from "./pageDOM";
+import { displayData, inboxData, projectSidebar, sideBarProjects, projectTaskData } from "./pageDOM";
 
 const addTaskBtn = document.getElementById("addTask");
 const addBtn = document.getElementById("add");
@@ -72,6 +72,7 @@ function buttonEventListeners() {
       projectBtnDisable();
       sideBarProjects(e.target.id);
       e.target.disabled = true;
+      projectTaskData()
     }
   });
 }
@@ -141,7 +142,7 @@ addBtn.addEventListener("click", (event) => {
   ) {
     storage.projectTaskJSON();
     defaultDialogClose(event, taskDialog);
-    displayData(JSON.parse(localStorage.getItem("projectTask")));
+   
   } else {
     storage.inboxStorageJSON();
     let storageJSON = JSON.parse(localStorage.getItem("Storage"))

@@ -68,7 +68,6 @@ const sideBarProjects = (id) => {
    
   });
 
-  //projectTaskData();
 };
 
 function deleteData(id) {
@@ -129,12 +128,27 @@ function projectData() {
   }
 }
 
-function projectTaskData() {
-  if (JSON.parse(localStorage.getItem("projectTask"))) {
-    let data = JSON.parse(localStorage.getItem("projectTask"));
+function projectTaskData(){
+  let storage = JSON.parse(localStorage.getItem("Storage")) || []
+  let [,,, ...projects] = storage
+ let projectBtn = findProject()
 
-    displayData(data);
+  projects.map((project)=>{
+      if(String(project.id) === String(projectBtn.id)){
+      displayData(project.tasks)
+      }
+  })
+}
+
+function findProject() {
+  const projectBtnList = document.getElementsByClassName("projectTab");
+  let projectBtn
+ for (let i = 0; i < projectBtnList.length; i++) {
+   if(projectBtnList[i].disabled){
+     projectBtn = projectBtnList[i]
+   }
   }
+  return projectBtn
 }
 
 function checkBoxData(el, div) {
@@ -157,6 +171,7 @@ export {
   todayData,
   projectSidebar,
   projectData,
-  projectTaskData,
-  sideBarProjects
+  sideBarProjects,
+  findProject,
+  projectTaskData
 };
