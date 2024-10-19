@@ -37,15 +37,26 @@ function displayData(storage) {
 }
 
 function projectSidebar(obj) {
-  const projects = document.querySelector(".projectDiv");
+  const projects = document.getElementById("projectID");
   const newProject = document.createElement("button");
 
   newProject.textContent = obj.title;
   newProject.className = "projectTab";
   newProject.id = obj.id;
   projects.appendChild(newProject);
+
+
 }
 
+function sideBarLoad() {
+  let storage = JSON.parse(localStorage.getItem("Storage")) || []
+  let [,,, ...projects] = storage
+
+
+    projects.forEach((item) => {
+      projectSidebar(item);
+    });
+}
 
 const sideBarProjects = (id) => {
   const mainPage = document.getElementById("content");
@@ -70,33 +81,54 @@ const sideBarProjects = (id) => {
 
 };
 
+function deleteSidebarBtn(){
+  const projectBtn = document.getElementsByClassName("projectTab")
+  while (projectBtn.length > 0) {
+    projectBtn[0].remove();
+  }
+}
+
 function deleteData(id) {
-  let inboxTask = JSON.parse(localStorage.getItem("task")) || [];
-  let projectTask = JSON.parse(localStorage.getItem("projectTask")) || [];
-  let projectList = JSON.parse(localStorage.getItem("projectList")) || [];
+  let storageJSON = JSON.parse(localStorage.getItem("Storage")) || [];
+  let inboxTask = storageJSON[0].tasks || [];;
+  //let todayTask = storageJSON[1].tasks || [];;
+  let [,,, ...projects] = storageJSON;
+  let taskDeleted = false;
 
-  let inboxTaskFilter = inboxTask.filter((item) => {
-    return item.id !== id;
-  });
-  let projectTaskFilter = projectTask.filter((item) => {
-    return item.id !== id;
-  });
-  let projectListFilter = projectList.filter((item) => {
-    return item.id !== id;
-  });
-
+  //Find selected task
+  let inboxTaskFilter = inboxTask.filter((item) => item.id !== id);
   if (inboxTaskFilter.length !== inboxTask.length) {
-    localStorage.setItem("task", JSON.stringify(inboxTaskFilter));
+    storageJSON[0].tasks = inboxTaskFilter;
+    localStorage.setItem("Storage", JSON.stringify(storageJSON));
+    inboxData();  // Update page view
+    taskDeleted = true; // Task is deleted, no need to continue
+  }
+   
+  if (!taskDeleted) {
+    projects.forEach((project) => {
+      //Find selected project
+      let projectTaskFilter = project.tasks.filter((task) => task.id !== id);
 
-    inboxData();
-  } else if (projectTaskFilter.length !== projectTask.length) {
-    localStorage.setItem("projectTask", JSON.stringify(projectTaskFilter));
+      if (projectTaskFilter.length !== project.tasks.length) {
+        project.tasks = projectTaskFilter;  // Update the tasks of the project
+        localStorage.setItem("Storage", JSON.stringify(storageJSON));  // Save the updated data
+        projectTaskData();  // Update page view
+        taskDeleted = true;
+      }
+    });
+  }
 
-    projectTaskData();
-  } else if (projectListFilter.length !== projectList.length) {
-    localStorage.setItem("projectList", JSON.stringify(projectListFilter));
 
-    projectData();
+  if (!taskDeleted) {
+    //Find selected task
+    let projectsFilter = projects.filter((project) => project.id !== id);
+    if (projectsFilter.length !== projects.length) {
+      storageJSON = [...storageJSON.slice(0, 3), ...projectsFilter];
+      localStorage.setItem("Storage", JSON.stringify(storageJSON));
+      deleteSidebarBtn()
+      sideBarLoad()
+      projectData();  // Update page view
+    }
   }
 }
 
@@ -112,10 +144,10 @@ function inboxData() {
 function todayData() {
   //let date = format(new Date(), "yyyy-MM-dd")
 
-  if (JSON.parse(localStorage.getItem("task"))) {
-    let data = JSON.parse(localStorage.getItem("task"));
-
-    displayData(data);
+  if (JSON.parse(localStorage.getItem("Storage"))) {
+    let data = JSON.parse(localStorage.getItem("Storage")) || [];
+    
+    displayData(data[1].tasks);
   }
 }
 
@@ -173,5 +205,6 @@ export {
   projectData,
   sideBarProjects,
   findProject,
-  projectTaskData
+  projectTaskData,
+  sideBarLoad
 };

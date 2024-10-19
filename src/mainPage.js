@@ -1,8 +1,9 @@
 import "./styles.css";
-import { today } from "./today";
+import { today, checkDate } from "./today";
 import { myProject } from "./myProject";
 import { storage } from "./storage";
-import { displayData, inboxData, projectSidebar, sideBarProjects, projectTaskData } from "./pageDOM";
+import { displayData, inboxData, projectSidebar, sideBarProjects, projectTaskData, sideBarLoad, projectData } from "./pageDOM";
+
 
 const addTaskBtn = document.getElementById("addTask");
 const addBtn = document.getElementById("add");
@@ -109,15 +110,9 @@ let template = [
 ]
   localStorage.setItem("Storage", JSON.stringify(template));
   }
+sideBarLoad()
+checkDate()
 
-  let storageJSON = JSON.parse(localStorage.getItem("Storage")) || []
-  let [,,, ...projects] = storageJSON
-
-
-    projects.forEach((item) => {
-      projectSidebar(item);
-    });
-  
 };
 
 function defaultDialogClose(event, dialog) {
@@ -143,10 +138,12 @@ addBtn.addEventListener("click", (event) => {
     storage.projectTaskJSON();
     defaultDialogClose(event, taskDialog);
    
-  } else {
+  } else{
     storage.inboxStorageJSON();
+    checkDate()
     let storageJSON = JSON.parse(localStorage.getItem("Storage"))
-    displayData(storageJSON[0].tasks);
+    if (inboxBtn.disabled) { displayData(storageJSON[0].tasks)} 
+    else if(todayBtn.disabled) {displayData(storageJSON[1].tasks); }
     defaultDialogClose(event, taskDialog);
   }
 });
@@ -166,4 +163,5 @@ addProjectBtn.addEventListener("click", (event) => {
       JSON.parse(localStorage.getItem("Storage")).length - 1
     ],
   );
+  projectData()
 });
