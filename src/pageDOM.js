@@ -93,7 +93,7 @@ function deleteData(id) {
   let inboxTask = storageJSON[0].tasks || [];;
   //let todayTask = storageJSON[1].tasks || [];;
   let [,,, ...projects] = storageJSON;
-  let taskDeleted = false;
+
 
   //Find selected task
   let inboxTaskFilter = inboxTask.filter((item) => item.id !== id);
@@ -101,10 +101,10 @@ function deleteData(id) {
     storageJSON[0].tasks = inboxTaskFilter;
     localStorage.setItem("Storage", JSON.stringify(storageJSON));
     inboxData();  // Update page view
-    taskDeleted = true; // Task is deleted, no need to continue
+    
   }
    
-  if (!taskDeleted) {
+
     projects.forEach((project) => {
       //Find selected project
       let projectTaskFilter = project.tasks.filter((task) => task.id !== id);
@@ -113,13 +113,13 @@ function deleteData(id) {
         project.tasks = projectTaskFilter;  // Update the tasks of the project
         localStorage.setItem("Storage", JSON.stringify(storageJSON));  // Save the updated data
         projectTaskData();  // Update page view
-        taskDeleted = true;
+      
       }
     });
-  }
+  
 
 
-  if (!taskDeleted) {
+ 
     //Find selected task
     let projectsFilter = projects.filter((project) => project.id !== id);
     if (projectsFilter.length !== projects.length) {
@@ -130,7 +130,7 @@ function deleteData(id) {
       projectData();  // Update page view
     }
   }
-}
+
 
 //Add tasks to inbox DOM on page load from localStorage
 function inboxData() {
