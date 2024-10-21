@@ -83,26 +83,38 @@ const sideBarProjects = (id) => {
 
 function deleteSidebarBtn(){
   const projectBtn = document.getElementsByClassName("projectTab")
+
   while (projectBtn.length > 0) {
     projectBtn[0].remove();
   }
 }
 
 function deleteData(id) {
+  const sideBarBtn = document.getElementsByClassName("navbtn")
+  let selectedBtn = sideBarBtn.map((item) => item.disabled === true)
   let storageJSON = JSON.parse(localStorage.getItem("Storage")) || [];
   let inboxTask = storageJSON[0].tasks || [];;
-  //let todayTask = storageJSON[1].tasks || [];;
+  let todayTask = storageJSON[1].tasks || [];;
   let [,,, ...projects] = storageJSON;
 
 
   //Find selected task
   let inboxTaskFilter = inboxTask.filter((item) => item.id !== id);
+  let todayTaskFilter = todayTask.filter((item) => item.id !== id);
+
   if (inboxTaskFilter.length !== inboxTask.length) {
     storageJSON[0].tasks = inboxTaskFilter;
     localStorage.setItem("Storage", JSON.stringify(storageJSON));
+
+    if(todayTaskFilter.length !== todayTask.length){
+      storageJSON[1].tasks = todayTaskFilter;
+      localStorage.setItem("Storage", JSON.stringify(storageJSON));
+      if(selectedBtn.id === "today"){
+      todayData()
+    }else{
     inboxData();  // Update page view
-    
-  }
+    }  
+  }}
    
 
     projects.forEach((project) => {
@@ -117,9 +129,6 @@ function deleteData(id) {
       }
     });
   
-
-
- 
     //Find selected task
     let projectsFilter = projects.filter((project) => project.id !== id);
     if (projectsFilter.length !== projects.length) {
