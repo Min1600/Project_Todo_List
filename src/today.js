@@ -3,20 +3,30 @@ import { format } from 'date-fns';
 
 
 function checkDate(){
-  const date = new Date()
+const date = new Date()
 const dateFormat = format(new Date(date), "dd-MM-yyyy")
  let storage = JSON.parse(localStorage.getItem("Storage")) || []
  let inbox = storage[0].tasks || []
  let todayTasks = storage[1].tasks || []
- let noRepeat = inbox.filter((item) => !todayTasks.some((task) => task.id === item.id));
+ let [,,, ...projectTasks] = storage
+ //let noRepeat = inbox.filter((item) => !todayTasks.some((task) => task.id === item.id));
 
-  noRepeat.forEach((item) =>{
+  inbox.forEach((item) =>{
       if(String(item.date) === String(dateFormat)){
+      item.date = "Today"
       todayTasks.push(item)
     } 
   })
-  
-  localStorage.setItem("Storage", JSON.stringify(storage));
+
+projectTasks.forEach((project) => {
+  project.tasks.forEach((task) =>{
+    if(String(task.date) === String(dateFormat)){
+      task.date = "Today"
+    } 
+  })
+})
+
+localStorage.setItem("Storage", JSON.stringify(storage));
 }
 const today = () => {
  
@@ -32,7 +42,6 @@ const today = () => {
 
   mainPage.appendChild(todayDiv);
   todayDiv.appendChild(mainTitle);
-  checkDate()
   todayData();
 };
 

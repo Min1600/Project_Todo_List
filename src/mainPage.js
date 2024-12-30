@@ -136,6 +136,8 @@ addBtn.addEventListener("click", (event) => {
     upcomingBtn.disabled === false
   ) {
     storage.projectTaskJSON();
+    checkDate()
+    storage.displayProjectTaskData()
     defaultDialogClose(event, taskDialog);
    
   } else{

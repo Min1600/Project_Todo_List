@@ -1,5 +1,6 @@
-import { displayData, findProject} from "./pageDOM";
+import {  displayData, findProject} from "./pageDOM";
 import { format } from 'date-fns'
+
 
 //module for task storage using JSON
 const storage = (function () {
@@ -13,9 +14,18 @@ const storage = (function () {
   const Task = function () {
     this.title = title.value;
     this.description = description.value;
-    this.date = date.value ? format(new Date(date.value), "dd-MM-yyyy") : "";
+    this.date = date.value ? format(new Date(date.value), "dd-MM-yyyy") : "No Due Date";
+    this.location = "Inbox"
     this.id = Date.now();
   };
+
+  const ProjectTask = function (){
+    this.title = title.value;
+    this.description = description.value;
+    this.date = date.value ? format(new Date(date.value), "dd-MM-yyyy") : "No Due Date";
+    this.location = title.value
+    this.id = Date.now();
+  }
 
   const Project = function () {
     this.title = projectTitle.value;
@@ -35,14 +45,19 @@ const storage = (function () {
     arr.push(task);
   }
 
+  function addProjectTask(arr){
+    let task = new ProjectTask()
+    arr.push(task)
+  }
+
   //arranges tasks by order of creation
  /* function push(arr, arr2) {
     arr.forEach((item, index) => arr2.splice(index, 0, item));
   }*/
-
+  
   //uses addTask and push functions to store tasks in localStorage
   function inboxStorageJSON() {
-    let storage = JSON.parse(localStorage.getItem("Storage"))
+    let storage = JSON.parse(localStorage.getItem("Storage")) || []
     let myTasks = storage[0].tasks
      addTask(myTasks)
 
@@ -52,30 +67,38 @@ const storage = (function () {
 
   //uses addProject and push functions to store projects in localStorage
   function projectStorageJSON() {
-    let storage = JSON.parse(localStorage.getItem("Storage"))
+    let storage = JSON.parse(localStorage.getItem("Storage")) || []
     addProject(storage)
 
     localStorage.setItem("Storage", JSON.stringify(storage));
   }
 
-
-
   function projectTaskJSON() {
     let storage = JSON.parse(localStorage.getItem("Storage")) || []
+    let myTasks = storage[0].tasks
     let [,,, ...projects] = storage
-   let projectBtn = findProject()
+    let projectBtn = findProject()
 
-    projects.map((project)=>{
-        if(String(project.id) === String(projectBtn.id)){
-        addTask(project.tasks)
-        localStorage.setItem("Storage", JSON.stringify(storage));
-        displayData(project.tasks)
-        }
-    })
-    
+   projects.forEach((project)=>{
+    if(String(project.id) === String(projectBtn.id)){
+      addProjectTask(project.tasks)
+      addProjectTask(myTasks)
+      localStorage.setItem("Storage", JSON.stringify(storage));
+      }
+  })
   }
-
  
+  function displayProjectTaskData(){
+    let storage = JSON.parse(localStorage.getItem("Storage")) || []
+    let [,,, ...projects] = storage
+    let projectBtn = findProject()
+
+   projects.forEach((project)=>{
+    if(String(project.id) === String(projectBtn.id)){
+  displayData(project.tasks)
+      }
+  })
+  }
 
   function reset() {
     title.value = "";
@@ -85,7 +108,7 @@ const storage = (function () {
     projectDescription.value = "";
   }
 
-  return { inboxStorageJSON, projectStorageJSON, projectTaskJSON, reset,};
+  return { inboxStorageJSON, projectStorageJSON, projectTaskJSON, reset, displayProjectTaskData };
 })();
 
 export { storage };

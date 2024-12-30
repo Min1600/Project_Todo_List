@@ -1,4 +1,4 @@
-import { projectData} from "./pageDOM";
+import { projectData } from "./pageDOM";
 
 const myProject = () => {
   const mainPage = document.getElementById("content");
@@ -23,4 +23,4 @@ const myProject = () => {
 
 
 
-export { myProject};
+export { myProject };
