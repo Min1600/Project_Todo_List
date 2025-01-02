@@ -8,14 +8,14 @@
   <body>
     <div id="container">
       <div class="sidebar">
-        <h3>Min</h3>
+        <h3>Amin Hassan</h3>
+        <p id="gitLink" ><a target="_blank" href="https://github.com/Min1600">My Github</a></p>
         <ul>
           <li class="addtask">
             <button id="addTask" class="navbtn">Add task +</button>
           </li>
           <li><button id="inbox" class="navbtn">Inbox</button></li>
           <li><button id="today" class="navbtn">Today</button></li>
-          <li><button class="navbtn" id="upcoming">Upcoming</button></li>
           <li>
             <div class="projectDiv" id="projectID">
               <button class="plus" id="projectbtn">+</button
@@ -56,6 +56,36 @@
         <div class="divBtn">
           <button type="submit" id="add" class="dialogbtn">Add</button>
           <button type="submit" id="close" class="dialogbtn">Close</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="taskDialog" id="editTaskDialog">
+      <form>
+        <legend>Add a Task</legend>
+        <div class="inputContainer">
+          <div class="inputTitle">
+            <p class="titleChild">Title:</p>
+            <p class="descriptionChild">Description:</p>
+            <p class="dateChild">Due Date:</p>
+          </div>
+
+          <div class="input">
+            <label for="edittitle"
+              ><input type="text" id="edittitle" name="edittitle" required
+            /></label>
+            <label for="editdescription">
+              <textarea name="editdescription" id="editdescription"></textarea>
+            </label>
+            <label for="editdate"
+              ><input type="date" id="editdate" name="editdate"
+            /></label>
+          </div>
+        </div>
+
+        <div class="divBtn">
+          <button type="submit" id="editadd" class="dialogbtn">Add</button>
+          <button type="submit" id="editclose" class="dialogbtn">Close</button>
         </div>
       </form>
     </dialog>
