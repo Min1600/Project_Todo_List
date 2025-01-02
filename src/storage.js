@@ -1,5 +1,5 @@
-import {  displayData, findProject} from "./pageDOM";
-import { format } from 'date-fns'
+import {  displayData, findProject } from "./pageDOM";
+
 
 
 //module for task storage using JSON
@@ -14,16 +14,14 @@ const storage = (function () {
   const Task = function () {
     this.title = title.value;
     this.description = description.value;
-    this.date = date.value ? format(new Date(date.value), "dd-MM-yyyy") : "No Due Date";
-    this.location = "Inbox"
+    this.date = date.value
     this.id = Date.now();
   };
 
   const ProjectTask = function (){
     this.title = title.value;
     this.description = description.value;
-    this.date = date.value ? format(new Date(date.value), "dd-MM-yyyy") : "No Due Date";
-    this.location = title.value
+    this.date = date.value
     this.id = Date.now();
   }
 

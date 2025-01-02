@@ -16,7 +16,6 @@ const closeProjectBtn = document.getElementById("closeProject");
 const inboxBtn = document.getElementById("inbox");
 const myProjectBtn = document.getElementById("project");
 const todayBtn = document.getElementById("today");
-const upcomingBtn = document.getElementById("upcoming");
 const sidebarBtnList = document.querySelectorAll(".navbtn");
 const projectBtnList = document.getElementsByClassName("projectTab");
 const mainBody = document.querySelector(".mainBody");
@@ -111,8 +110,6 @@ let template = [
   localStorage.setItem("Storage", JSON.stringify(template));
   }
 sideBarLoad()
-checkDate()
-
 };
 
 function defaultDialogClose(event, dialog) {
@@ -120,6 +117,7 @@ function defaultDialogClose(event, dialog) {
   storage.reset();
   dialog.close();
 }
+
 
 //For Tasks
 addTaskBtn.addEventListener("click", () => {
@@ -132,8 +130,7 @@ addBtn.addEventListener("click", (event) => {
   if (
     inboxBtn.disabled === false &&
     myProjectBtn.disabled === false &&
-    todayBtn.disabled === false &&
-    upcomingBtn.disabled === false
+    todayBtn.disabled === false
   ) {
     storage.projectTaskJSON();
     checkDate()

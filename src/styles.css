@@ -42,9 +42,10 @@ select {
   grid-template-columns: minmax(375px, 1fr) 4fr;
 }
 
-h3 {
-  margin: 1rem;
+#gitLink{
+ margin-bottom: 2rem;
 }
+
 
 h1 {
   font-size: 3rem;
@@ -61,9 +62,38 @@ h2 {
 
 .taskBody {
   border-bottom: lightgray solid 1px;
-  min-width: 400px;
-  max-width: 1000px;
   width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;;
+}
+
+.editDeleteBtn{
+  width: 20px;
+  background-color: transparent;
+  border:0;
+  margin: 5px;
+  color: lightgray;
+  }
+
+.editDeleteSvg:hover{
+color: gray;
+}
+
+.titleContainer{
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+column-gap: 0px;
+}
+
+.buttonContainer{
+  display:flex;
+  align-items: center;
+}
+
+.date, .description{
+  grid-column: 2/3;;
 }
 
 .sidebar {
@@ -87,8 +117,13 @@ h2 {
   color: white;
 }
 
-button:hover {
+.navbtn:hover, .dialogbtn:hover, .projectTab:hover{
   background-color: var(--button-hover-color);
+}
+
+#projectbtn:hover{
+  width: 28px;
+  height: 28px;
 }
 
 li {
@@ -130,14 +165,14 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: clamp(9px, 24px, 24px);
-  height: 1.5rem;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: none;
   background-color: orangered;
-  font-size: 1.5rem;
+  font-size: 24px;
   margin-top: 0.25rem;
-  margin-right: 0.25rem;
+  margin-right: 100px;
   color: black;
 }
 
@@ -155,7 +190,7 @@ li {
   font-weight: bold;
 }
 
-#upcoming {
+#today {
   margin-bottom: 2rem;
 }
 
@@ -226,3 +261,8 @@ textarea {
   width: 4rem;
   border: none;
 }
+
+.checkbox{
+  width: 1rem;
+  margin-right: 50px
+ }
