@@ -1,18 +1,19 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
-
 
 * {
   margin: 0px;
   padding: 0px;
   font-size: 16px;
-  font-family:Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-:root{
+:root {
   --sidebar-bg-color: bisque;
-  --button-hover-color: 	silver;
+  --button-hover-color: silver;
 }
 
 body {
@@ -20,204 +21,248 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
-#container{
-display: grid;
-grid-template-columns: minmax(375px, 1fr) 4fr
+#container {
+  display: grid;
+  grid-template-columns: minmax(375px, 1fr) 4fr;
 }
 
-h3{
-  margin: 1rem;
+#gitLink{
+ margin-bottom: 2rem;
 }
 
-h1{
+
+h1 {
   font-size: 3rem;
 }
 
-h2{
+h2 {
   font-size: 1.5rem;
 }
 
-
-.mainBody{
+.mainBody {
   display: grid;
   justify-content: center;
 }
 
-.taskBody{
+.taskBody {
   border-bottom: lightgray solid 1px;
-  min-width: 400px;
-  max-width: 1000px;
   width: 1000px;
-
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;;
 }
 
-.sidebar{
+.editDeleteBtn{
+  width: 20px;
+  background-color: transparent;
+  border:0;
+  margin: 5px;
+  color: lightgray;
+  }
+
+.editDeleteSvg:hover{
+color: gray;
+}
+
+.titleContainer{
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+column-gap: 0px;
+}
+
+.buttonContainer{
+  display:flex;
+  align-items: center;
+}
+
+.date, .description{
+  grid-column: 2/3;;
+}
+
+.sidebar {
   padding: 1rem;
   height: 100vh;
   grid-row: 1 / 5;
   background-color: var(--sidebar-bg-color);
 }
 
-.taskbtn{
+.taskbtn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 1.5rem;
   height: 1.5rem;
-   border-radius: 50%;
-   border: none;
-   background-color: orangered;
+  border-radius: 50%;
+  border: none;
+  background-color: orangered;
   font-size: 1.5rem;
   color: white;
 }
 
-button:hover{
-   background-color: var(--button-hover-color)
-  
+.navbtn:hover, .dialogbtn:hover, .projectTab:hover{
+  background-color: var(--button-hover-color);
 }
 
-li{
+#projectbtn:hover{
+  width: 28px;
+  height: 28px;
+}
+
+li {
   list-style-type: none;
 }
 
-.project-div{
+.project-div {
   margin-top: 2rem;
 }
 
-
-
-.title, .taskBody{
-margin-top: 1rem;
-margin-bottom: 1rem;
-padding-left: 3rem;
+.title,
+.taskBody {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 3rem;
 }
 
-.navbtn, .projectTab{
+.navbtn,
+.projectTab {
   border: none;
   padding-right: 1fr;
   background-color: var(--sidebar-bg-color);
- display: block;
+  display: block;
   text-align: start;
   padding: 0.25rem;
   width: 100%;
   border-radius: 10px;
-  grid-column: 1 / 10
+  grid-column: 1 / 10;
 }
 
-#addTask{
+#addTask {
   color: orangered;
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-.plus{
+.plus {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: clamp(9px, 24px, 24px);
-  height: 1.5rem;
-   border-radius: 50%;
-   border: none;
-   background-color: orangered;
-  font-size: 1.5rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: orangered;
+  font-size: 24px;
   margin-top: 0.25rem;
-  margin-right: 0.25rem;
+  margin-right: 100px;
   color: black;
 }
 
-.projectDiv{
+.projectDiv {
   display: grid;
   grid-template-columns: repeat(9, clamp(24px, 10%, 100%));
 }
 
-#projectbtn{
-  grid-column: 1 / 2
+#projectbtn {
+  grid-column: 1 / 2;
 }
 
-#project{
+#project {
   grid-column: 2 / 10;
   font-weight: bold;
 }
 
-
-#upcoming{
+#today {
   margin-bottom: 2rem;
 }
 
-button:disabled{
-background-color: burlywood;
-color: orangered;
-opacity: 80%;
+button:disabled {
+  background-color: burlywood;
+  color: orangered;
+  opacity: 80%;
 }
 
-textarea{
+textarea {
   resize: none;
 }
 
-legend{
+legend {
   margin: 1rem;
 }
 
-dialog{
+dialog {
   width: 25vw;
-position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.inputContainer{
+.inputContainer {
   display: flex;
   margin: 1rem;
 }
 
-.inputTitle{
+.inputTitle {
   display: grid;
 }
 
-.dateChild{
+.dateChild {
   align-self: end;
 }
 
-.descriptionChild{
+.descriptionChild {
   align-self: start;
 }
 
-input, textarea{
+input,
+textarea {
   width: 15vw;
 }
 
-#date, #title{
+#date,
+#title {
   height: 1.5rem;
-  font-size:1rem;
+  font-size: 1rem;
 }
 
-#description{
+#description {
   height: 3rem;
 }
 
-.divBtn{
+.divBtn {
   display: flex;
   justify-content: end;
   margin: 1rem;
   gap: 10px;
 }
 
-.dialogbtn{
+.dialogbtn {
   background-color: orangered;
   border-radius: 5px;
   width: 4rem;
   border: none;
 }
 
+.checkbox{
+  width: 1rem;
+  margin-right: 50px
+ }
