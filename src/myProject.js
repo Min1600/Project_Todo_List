@@ -1,4 +1,6 @@
+
 import { projectData } from "./pageDOM";
+
 
 const myProject = () => {
   const mainPage = document.getElementById("content");
@@ -18,9 +20,5 @@ const myProject = () => {
 
   projectData();
 };
-
-
-
-
 
 export { myProject };
