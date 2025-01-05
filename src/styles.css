@@ -73,11 +73,11 @@ h2 {
   background-color: transparent;
   border:0;
   margin: 5px;
-  color: lightgray;
+  color: gray;
   }
 
 .editDeleteSvg:hover{
-color: gray;
+color: lightgray;
 }
 
 .titleContainer{

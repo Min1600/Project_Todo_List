@@ -144,7 +144,7 @@ selectedBtn = sideBarBtn[i].id
     projects.forEach((project) => {
       //Find selected project
       let projectTaskFilter = project.tasks.filter((task) => task.id !== id);
-//gets rid of selected project task
+      //gets rid of selected project task
       if (projectTaskFilter.length !== project.tasks.length) {
         project.tasks = projectTaskFilter;  // Update the tasks of the project
         localStorage.setItem("Storage", JSON.stringify(storageJSON));  // Save the updated data
@@ -170,27 +170,85 @@ selectedBtn = sideBarBtn[i].id
 
   function editData(obj){
     let storageJSON = JSON.parse(localStorage.getItem("Storage")) || [];
-    let inboxTask = storageJSON[0].tasks || [];;
-    //let [,,, ...projects] = storageJSON
+    let inboxTask = storageJSON[0].tasks || [];
+    let todayTask = storageJSON[1].tasks || [];
+    let [,,, ...projects] = storageJSON
     const taskDialog = document.getElementById("editTaskDialog");
-    //const projectDialog = document.querySelector(".projectDialog"); 
+    const projectDialog = document.getElementById("editProjectDialog"); 
+    const projTitle = document.getElementById("edit-project-title");
+    const projDescription = document.getElementById("edit-project-description");
+    const projAddBtn = document.getElementById("editaddProject");
     const title = document.getElementById("edittitle");
     const description = document.getElementById("editdescription");
     const date = document.getElementById("editdate");
     const addBtn = document.getElementById("editadd");
-    let inboxTaskFind = inboxTask.filter((item) => {if(item.id === obj.id)return item.id})
     title.value = obj.title;
     description.value = obj.description;
     date.value = obj.date;
-    addBtn.addEventListener("click", () =>{
-      inboxTaskFind[0].title = title.value;
-      inboxTaskFind[0].date = date.value;
-      inboxTaskFind[0].description = description.value
-      localStorage.setItem("Storage", JSON.stringify(storageJSON))
-    })
-    taskDialog.showModal()
+    projTitle.value = obj.title;
+    projDescription.value = obj.description;
+
+    let inboxTaskFind = inboxTask.filter((item) => {if(item.id === obj.id)return item.id})
+    let todayTaskFind = todayTask.filter((item) => {if(item.id === obj.id)return item.id})
+    let projectsFilter = projects.filter((project) => {if(project.id === obj.id) return project.id});
+
+      function close(dialog, event){
+        dialog.close()
+        event.preventDefault()
+      }
+
+      function update(task){
+        task[0].title = title.value;
+        task[0].date = date.value;
+        task[0].description = description.value
+      }
+
+if(inboxTaskFind.length > 0 && todayTaskFind.length > 0){
+  addBtn.addEventListener("click", (event) =>{
+    update(inboxTaskFind)
+    update(todayTaskFind)
+    localStorage.setItem("Storage", JSON.stringify(storageJSON))
+    inboxData()
+    close(taskDialog, event)
     
-   
+   })
+  }else{
+  projects.forEach((project) => {
+    //Find selected project
+    let projectTaskFilter = project.tasks.filter((item) => {if(item.id === obj.id)return item.id});
+    if (projectTaskFilter.length > 0) {
+      addBtn.addEventListener("click", (event) => {
+        update(projectTaskFilter)
+        update(inboxTaskFind)
+        localStorage.setItem("Storage", JSON.stringify(storageJSON));  
+        projectTaskData()
+        close(taskDialog, event)
+        
+      })
+    }else if(inboxTaskFind.length > 0){
+      addBtn.addEventListener("click", (event) =>{
+        update(inboxTaskFind)
+        localStorage.setItem("Storage", JSON.stringify(storageJSON))
+        inboxData()
+        close(taskDialog, event)
+       })
+    }else if (projectsFilter.length > 0){
+        projAddBtn.addEventListener("click", (event) =>{
+        projectsFilter[0].title = projTitle.value;
+        projectsFilter[0].description = projDescription.value
+        localStorage.setItem("Storage", JSON.stringify(storageJSON))
+        projectData()
+        close(projectDialog, event)
+       })
+    }
+  });
+}   if(projectsFilter.length > 0){
+      projectDialog .showModal()
+    }else{
+      taskDialog.showModal()
+    }
+    
+    
     }
 
 //Display data from localStorage

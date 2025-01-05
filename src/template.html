@@ -122,5 +122,38 @@
         </div>
       </form>
     </dialog>
+
+    <dialog class="projectDialog" id="editProjectDialog">
+      <form>
+        <legend>Add Project</legend>
+        <div class="inputContainer">
+          <div class="inputTitle">
+            <p class="titleChild">Title:</p>
+            <p class="descriptionChild">Description:</p>
+          </div>
+          <div class="input">
+            <label for="edit-project-title"
+              ><input
+                type="text"
+                id="edit-project-title"
+                name="edit-project-title"
+                required
+            /></label>
+            <label for="edit-project-description">
+              <textarea
+                name="edit-project-description"
+                id="edit-project-description"
+              ></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="divBtn">
+          <button type="submit" id="editaddProject" class="dialogbtn">Add</button>
+          <button type="submit" id="editcloseProject" class="dialogbtn">
+            Close
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
